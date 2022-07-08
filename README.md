@@ -41,6 +41,7 @@
 ### 4. 스프링 컨테이너
 - ```ApplicationContext``` 를 스피링 컨테이너라 한다.
 - ```@Bean```이라 적힌 메서드를 모드 호출해 스프링 컨테이너에 등록한다.
+
 ```java
 ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
