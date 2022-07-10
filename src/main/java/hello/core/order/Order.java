@@ -17,7 +17,7 @@ public class Order {
                 ", itemName='" + itemName + '\'' +
                 ", itemPrice=" + itemPrice +
                 ", discountPrice=" + discountPrice +
-                '}';
+                '}' ;
     }
 
     public Long getMemberId() {
