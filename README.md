@@ -6,7 +6,6 @@
 - 제어의 역전(IoC)
 - 스프링 컨테이너
 
-
 ### 1. SOLID
 (1) SRP 단일 책임 원칙
 - 한 클래스는 하나의 책임을 가져야 한다.
@@ -33,13 +32,16 @@
   인스턴스를 변경할 수 있다.
 - 의존관계 주입을 사용하면 정적인 클래스 의존관계를 변경하지 않고, 동적인 객체 인스턴스 의존관계를
   쉽게 변경할 수 있다.
+  
 ### 3. 제어의 역전(IoC)
 - 프로그램의 제어 흐름을 직접 제어하는 것이 아니라 외부에서 관리하는 것을 제어의 역전(IoC)이라
   한다.
 - 이때 ```AppConfig```가 이에 해당한다.
+
 ### 4. 스프링 컨테이너
 - ```ApplicationContext``` 를 스피링 컨테이너라 한다.
 - ```@Bean```이라 적힌 메서드를 모드 호출해 스프링 컨테이너에 등록한다.
+
 ```java
 ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
