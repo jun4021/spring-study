@@ -5,7 +5,9 @@
 - 의존관계 주입(DI)
 - 제어의 역전(IoC)
 - 스프링 컨테이너
+- 스프링 빈 조회
 
+- (별도) JAVA 문법
 ### 1. SOLID
 (1) SRP 단일 책임 원칙
 - 한 클래스는 하나의 책임을 가져야 한다.
@@ -46,3 +48,33 @@
 ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
 ```
+
+### 5. 스프링 빈 조회
+- 빈 이름으로 조회하기
+  - 부모 타입의 빈은 자식 타입도 함께 모두 조회한다.
+  - 한 번에 하나의 빈만 조회 가능, 중복 불가 -> 이름으로 조회로 해결(중복된 이름은 불가능하기 때문)
+  
+```java
+AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+MemberService memberService = ac.getBean("memberService", MemberService.class);
+```
+
+- 모든 빈 조회하기 
+```java
+String[] beanDefinitionNames = ac.getBeanDefinitionNames();
+```
+- 타입으로 모두 조회하기
+```java
+Map<String, Object> beanOfType = ac.getBeansOfType(Object.class);
+```
+
+### (별도) JAVA 문법
+- Iterator (for-each)
+```java
+String[] numbers = {"one", "two", "three"};
+for(String number: numbers) {
+    System.out.println(number);
+}
+```
+
+- Lambda
