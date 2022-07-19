@@ -6,7 +6,7 @@
 - 제어의 역전(IoC)
 - 스프링 컨테이너
 - 스프링 빈 조회
-
+- 싱글톤 컨테이너
 - (별도) JAVA 문법
 ### 1. SOLID
 (1) SRP 단일 책임 원칙
@@ -67,7 +67,31 @@ String[] beanDefinitionNames = ac.getBeanDefinitionNames();
 ```java
 Map<String, Object> beanOfType = ac.getBeansOfType(Object.class);
 ```
+### 6. 싱글톤 컨테이너
+- 서로 다른 클라이언트가 호출할 때마다 새로 객체가 생성된다. 
+- 따라서 메모리 낭비를 막기 위해 1개만 생성하고 이를 공유하는 싱글톤 패턴이 필요하다.
+#### * 싱글톤 패턴
+```java
+// static 영역에 1개만 생성
+private static final SingletonService instance = new SingletonService();
 
+// 조회 방법
+public static SingletonService getInstance(){
+    return instance;
+}
+// 다른 곳에서 new 불가능
+private SingletonService(){
+}
+```
+- 클라이언트가 구체 클래스에 의존한다(DIP 위반)
+- 테스트하기 어렵다.
+- private 생성자로 인해 자식 클래스를 만들기 어렵다.
+- 유연하지 못하다.
+
+#### * 싱글톤 컨테이너
+- 스프링 컨테이너는 기본적으로 싱글톤 방식으로 동작한다.
+- 특정 클라이언트가 공유되는 값을 변경 가능하게 만들면 안된다. (Stateless 상태를 유지)
+- ```@Configuration``` 이 싱글톤을 보장해준다.
 ### (별도) JAVA 문법
 - Iterator (for-each)
 ```java
