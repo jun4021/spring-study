@@ -7,6 +7,7 @@
 - 스프링 컨테이너
 - 스프링 빈 조회
 - 싱글톤 컨테이너
+- 컴포넌트 스캔
 - (별도) JAVA 문법
 ### 1. SOLID
 (1) SRP 단일 책임 원칙
@@ -92,6 +93,13 @@ private SingletonService(){
 - 스프링 컨테이너는 기본적으로 싱글톤 방식으로 동작한다.
 - 특정 클라이언트가 공유되는 값을 변경 가능하게 만들면 안된다. (Stateless 상태를 유지)
 - ```@Configuration``` 이 싱글톤을 보장해준다.
+
+### 7. 컴포넌트 스캔
+- ```@ComponentScan```을 통해 ```@Component``` 가 붙은 클래스를 스프링 빈으로 자동 등록한다.
+  - ```@Controller```, ```@Service```, ```@Repository``` 는 ```@Component```를 포함하고 있어 자동 등록된다.
+- ```@Autowired```를 통해 의존관계 주입을 자동으로 해준다.
+  - 타입이 같은 빈을 자동으로 찾아서 주입한다.
+- 
 ### (별도) JAVA 문법
 - Iterator (for-each)
 ```java
