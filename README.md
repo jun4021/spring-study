@@ -99,7 +99,34 @@ private SingletonService(){
   - ```@Controller```, ```@Service```, ```@Repository``` 는 ```@Component```를 포함하고 있어 자동 등록된다.
 - ```@Autowired```를 통해 의존관계 주입을 자동으로 해준다.
   - 타입이 같은 빈을 자동으로 찾아서 주입한다.
-- 
+
+### 8. 의존관계 주입 방법
+1. 생성자 주입
+   - ```@Autowired``` 를 이용해 생성자에서 의존관계를 주입한다.
+   - ```불변```, ```필수``` 의존관계에 사용.
+```java
+@Component
+public class OrderServiceImpl implements OrderService {
+
+  private final MemberRepository memberRepository;
+  private final DiscountPolicy discountPolicy;
+
+  @Autowired
+  public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    this.memberRepository = memberRepository;
+    this.discountPolicy = discountPolicy;
+  }
+}
+```
+2. 수정자 주입(setter)
+   - 선택, 변경 가능성이 있는 의존관계에 사용
+```java
+@Autowired
+ public void setMemberRepository(MemberRepository memberRepository) {
+ this.memberRepository = memberRepository;
+ }
+```
+
 ### (별도) JAVA 문법
 - Iterator (for-each)
 ```java
