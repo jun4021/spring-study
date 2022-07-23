@@ -138,3 +138,28 @@ for(String number: numbers) {
 ```
 
 - Lambda
+- Lombok library
+  - Getter, Setter ToString Method를 자동으로 생성해준다.
+```java
+@Getter @Setter @ToString 
+public class HelloLombok {
+    private String name;
+    private int age;
+
+    public static void main(String[] args) {
+        HelloLombok helloLombok = new HelloLombok();
+        helloLombok.setAge(12);
+        helloLombok.toString();
+    }
+}
+```
+```java
+@Component
+@RequiredArgsConstructor
+public class OrderServiceImpl implements OrderService {
+     private final MemberRepository memberRepository;
+     private final DiscountPolicy discountPolicy;
+}
+
+```
+- ```@RequiredArgsConstructor```는 final이 붙은 필드를 모아 Constructor를 생성한다.
