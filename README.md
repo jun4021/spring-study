@@ -127,6 +127,37 @@ public class OrderServiceImpl implements OrderService {
  this.memberRepository = memberRepository;
  }
 ```
+### 9. 빈 생명주기 콜백
+- 스프링 빈의 이벤트 라이프 사이클
+  - 스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존관계 주입 ->```초기화 콜백```-> 사용 -> ```소멸전 콜백``` -> 죵료
+
+1. 인터페이스 (InitializingBean, DisposableBean)
+   - 권장하지 않음.
+```java
+public class NetworkClient implements InitializingBean, DisposableBean{
+    // 의존 관계 주입 후 호출
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        connect();
+        call("초기화 연결 메시지");
+    }
+
+    // 종료 전 호출
+    @Override
+    public void destroy() throws Exception {
+        disconnect();
+    }
+}
+```
+
+2. 빈 등록 초기화, 소멸 메서드
+   - 외부 라이브러리에 적용할 때 사용한다.
+```java
+// Method 이름을 통해 호출 가능
+@Bean(initMethod = "init", destroyMethod = "destroy")
+```
+3. Annotation @PostConstruct, @PreDestroy 사용
+   - 권장 방법 
 
 ### (별도) JAVA 문법
 - Iterator (for-each)
