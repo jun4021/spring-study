@@ -160,6 +160,19 @@ public class NetworkClient implements InitializingBean, DisposableBean{
 3. Annotation @PostConstruct, @PreDestroy 사용
    - 권장 방법 
 
+### 10. 빈 스코프
+- Web Scope 
+```java
+@Scope(value = "request")
+```
+- 웹 스코프 종류
+1. request: HTTP 요청 하나가 들어오고 나갈 때 까지 유지되는 스코프, 각각의 HTTP 요청마다 별도의 빈
+인스턴스가 생성되고, 관리된다.
+2. session: HTTP Session과 동일한 생명주기를 가지는 스코프
+3. application: 서블릿 컨텍스트( ServletContext )와 동일한 생명주기를 가지는 스코프
+4. websocket: 웹 소켓과 동일한 생명주기를 가지는 스코프
+
+- 
 ### (별도) JAVA 문법
 - Iterator (for-each)
 ```java
